@@ -1,5 +1,5 @@
 # Automatic Essay Grader
-A simple, secure login and signup system with PHP and MySQL with user account verification and confirmation.
+Automated Essay Grader implemented in Keras using Deep learning.
 
 ### Requirements
 1. Python 3
