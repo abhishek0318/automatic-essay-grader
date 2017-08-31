@@ -4,7 +4,7 @@ configure(use_cpu=True)
 from callbacks import QWKScore, SaveModel
 from constants import DATASET_DIR, TRAINED_MODELS_DIR
 from keras.callbacks import TensorBoard
-from models.lstm import get_model
+from models.cnn_lstm import get_model
 
 print('Loading data..')
 essay_length = 500
