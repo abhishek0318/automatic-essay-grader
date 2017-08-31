@@ -38,5 +38,5 @@ callbacks_list = [qwkscore, tensorboard, savemodel]
 
 print()
 print('Training model..')
-history = model.fit(X_train, y_train, batch_size=32, epochs=150, validation_data=(X_cv, y_cv), callbacks=callbacks_list)
+history = model.fit(X_train, y_train, batch_size=32, epochs=50, validation_data=(X_cv, y_cv), callbacks=callbacks_list)
 print('Model trained.')
