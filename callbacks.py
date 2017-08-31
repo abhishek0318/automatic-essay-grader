@@ -51,7 +51,7 @@ class QWKScore(Callback):
             print('\nWeighted QWK score: {:.2f}'.format(weighted_qwk_score))
 
         if self.save_to_file:
-            summary = "Epoch " + str(epoch)
+            summary = "Epoch " + str(epoch + 1)
             log_values = "\n"
             for key, value in logs.items():
                 log_values += "{}: {:.4f} ".format(key, value)
@@ -61,7 +61,7 @@ class QWKScore(Callback):
             summary = summary + log_values + individual_qwk_scores
             summary += '\nWeighted QWK score: {:.2f}'.format(weighted_qwk_score)
             summary += '\n\n'
-            with open(constants.SAVE_DIR + "scores.txt", "a") as f:
+            with open(os.path.join(constants.SAVE_DIR, "scores.txt"), "a") as f:
                 f.write(summary)
 
 class SaveModel(ModelCheckpoint):
@@ -73,14 +73,14 @@ class SaveModel(ModelCheckpoint):
         # make folder with the current time as name
         now = datetime.datetime.now()
         current_time = "{}_{}_{}_{}_{}_{}".format(now.day, now.hour, now.year, now.hour, now.minute, now.second)
-        constants.SAVE_DIR = directory + current_time + "/"
+        constants.SAVE_DIR = os.path.join(directory, current_time)
 
         create_folder(constants.SAVE_DIR)
 
-        ModelCheckpoint.__init__(self, constants.SAVE_DIR + filename, monitor=monitor, save_best_only=save_best_only, save_weights_only=save_weights_only, mode=mode, period=period)
+        ModelCheckpoint.__init__(self, os.path.join(constants.SAVE_DIR, filename), monitor=monitor, save_best_only=save_best_only, save_weights_only=save_weights_only, mode=mode, period=period)
 
     def on_train_begin(self, logs=None):
         # save model architecture.
         parsed = json.loads(self.model.to_json())
-        with open(constants.SAVE_DIR + 'model.txt', 'w') as file:
+        with open(os.path.join(constants.SAVE_DIR, 'model.txt'), 'w') as file:
             file.write(json.dumps(parsed, indent=4))

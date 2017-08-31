@@ -43,7 +43,7 @@ def load_data(dataset_directory, train_size=0.8, validation_size=0.2):
     """
     Loads data from csv file and divides it into test, train and validation.
     """
-    essays = pd.read_csv(dataset_directory + 'training_set_rel3.tsv', sep='\t',
+    essays = pd.read_csv(os.path.join(dataset_directory, 'training_set_rel3.tsv'), sep='\t',
                      encoding="ISO-8859-1")[['essay_id', 'essay_set', 'essay', 'domain1_score']]
 
     essays_training, essays_test = train_test_split(essays, train_size=train_size, random_state=0)
@@ -84,7 +84,7 @@ def load_embedding_matrix(glove_directory, embedding_dimension=50):
     Loads pretrained word vectors for initialising the embedding layer.
     """
 
-    with open(glove_directory + 'glove.6B.' + str(embedding_dimension) + 'd.txt') as file:
+    with open(os.path.join(glove_directory, 'glove.6B.' + str(embedding_dimension) + 'd.txt')) as file:
         embeddings = {}
         for line in file:
             values = line.split()
