@@ -10,6 +10,6 @@ Automated Essay Grader implemented in Keras using Deep learning.
 
 ### Installation
 1. Download training data from [here](https://www.kaggle.com/c/asap-aes/data) and GloVe vectors from [here](http://nlp.stanford.edu/data/glove.6B.zip).
-2. Modify DATASET_DIR and GLOVE_DIR variables in constants.py.
+2. Modify DATASET_DIR, GLOVE_DIR and TRAINED_MODELS_DIR variables in constants.py.
 3. Run train_model.py
                       

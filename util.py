@@ -29,6 +29,16 @@ def configure(use_cpu=False, gpu_memory_fraction=0.25, silence_warnings=True):
         config.gpu_options.per_process_gpu_memory_fraction = 0.25
         set_session(tf.Session(config=config))
 
+def create_folder(folder_path):
+    """
+    Creates folder with the given name.
+    """
+    try:
+        os.makedirs(folder_path)
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            raise
+
 def load_data(dataset_directory, train_size=0.8, validation_size=0.2):
     """
     Loads data from csv file and divides it into test, train and validation.

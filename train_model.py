@@ -1,8 +1,8 @@
 from util import configure, load_data, process_data
 configure(use_cpu=True)
 
-from callbacks import QWKScore
-from constants import DATASET_DIR
+from callbacks import QWKScore, SaveModel
+from constants import DATASET_DIR, TRAINED_MODELS_DIR
 from keras.callbacks import TensorBoard
 from models.lstm import get_model
 
@@ -32,8 +32,9 @@ print(model.summary())
 print('Model loaded.')
 
 qwkscore = QWKScore(essays_cv)
+savemodel = SaveModel(TRAINED_MODELS_DIR, 'weights.{epoch:02d}-{val_loss:.4f}.hdf5', verbose=0)
 tensorboard = TensorBoard(log_dir='./logs', histogram_freq=2, batch_size=32, write_grads=False)
-callbacks_list = [qwkscore, tensorboard]
+callbacks_list = [qwkscore, tensorboard, savemodel]
 
 print()
 print('Training model..')
