@@ -16,7 +16,7 @@ def get_model(embedding_dimension, essay_length):
     model.add(Conv1D(filters=50, kernel_size=5, padding='same'))
     model.add(LSTM(300, dropout=0.4, recurrent_dropout=0.4))
     model.add(Dropout(0.4))
-    model.add(Dense(1, activation='sigmoid', activity_regularizer=keras.regularizers.l2(0.01)))
+    model.add(Dense(1, activation='sigmoid', activity_regularizer=keras.regularizers.l2(0.0)))
     model.compile(loss='mean_squared_error', optimizer='adam')
 
     return model
