@@ -72,7 +72,7 @@ class SaveModel(ModelCheckpoint):
       
         # make folder with the current time as name
         now = datetime.datetime.now()
-        current_time = "{}_{}_{}_{}_{}_{}".format(now.day, now.hour, now.year, now.hour, now.minute, now.second)
+        current_time = "{}_{}_{}_{}_{}_{}".format(now.day, now.month, now.year, now.hour, now.minute, now.second)
         constants.SAVE_DIR = os.path.join(directory, current_time)
 
         create_folder(constants.SAVE_DIR)
